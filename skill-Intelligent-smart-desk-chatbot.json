@@ -1,0 +1,395 @@
+{
+  "intents": [
+    {
+      "intent": "Types_of_holograms",
+      "examples": [
+        {
+          "text": "I want to know about the types of holograms"
+        },
+        {
+          "text": "types of holograms"
+        },
+        {
+          "text": "What are the types of holograms"
+        },
+        {
+          "text": "what is reflection hologram"
+        },
+        {
+          "text": "what is transmission hologram"
+        },
+        {
+          "text": "what are hybrid holograms"
+        }
+      ],
+      "description": "Mention the types of holograms"
+    },
+    {
+      "intent": "Field_Information",
+      "examples": [
+        {
+          "text": "What are the pre-requisites"
+        },
+        {
+          "text": "What does holographic functions do"
+        },
+        {
+          "text": "What are Future photonic devices"
+        }
+      ],
+      "description": "User wants to know about holograms"
+    },
+    {
+      "intent": "Applications-of-holograms",
+      "examples": [
+        {
+          "text": "what are the applications of holograms"
+        },
+        {
+          "text": "applications of holograms"
+        },
+        {
+          "text": "how to create virtual image"
+        }
+      ],
+      "description": "Applications of holograms"
+    }
+  ],
+  "entities": [
+    {
+      "entity": "Hi",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Hi",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "Greet",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Can i talk to my assistant",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Can i know your role of assistant",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "webhooks": [
+    {
+      "url": "https://eu-gb.functions.cloud.ibm.com/api/v1/web/sameeratasneem3%40gmail.com_dev/default/disco-action.json",
+      "name": "main_webhook",
+      "headers": []
+    }
+  ],
+  "dialog_nodes": [
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Try again later"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_10_1591164989340",
+      "conditions": "anything_else",
+      "dialog_node": "response_5_1591165015262",
+      "previous_sibling": "response_6_1591165013386"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "\"<?$webhook_result_2.passages[0].passage_text?>\""
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_10_1591164989340",
+      "conditions": "$webhook_result_2",
+      "dialog_node": "response_6_1591165013386"
+    },
+    {
+      "type": "standard",
+      "title": "Chatbot details",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Yes, I'm your Assistant Dobby. "
+              },
+              {
+                "text": "Hi I am Dobby, your assistant. "
+              },
+              {
+                "text": "I am your holographic assistant, Dobby."
+              },
+              {
+                "text": "Here I am, Dobby ! Your assistant."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1590493065117",
+      "conditions": "@Greet",
+      "dialog_node": "node_9_1591166812849"
+    },
+    {
+      "type": "standard",
+      "title": "Applications of model",
+      "parent": "node_5_1591097647383",
+      "actions": [
+        {
+          "name": "main_webhook",
+          "type": "webhook",
+          "parameters": {
+            "input": "<?input.text?>"
+          },
+          "result_variable": "webhook_result_3"
+        }
+      ],
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#Applications-of-holograms",
+      "dialog_node": "node_8_1591168370998",
+      "previous_sibling": "node_10_1591164989340"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Try again later"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_5_1591097647383",
+      "conditions": "anything_else",
+      "dialog_node": "response_2_1591097733735",
+      "previous_sibling": "response_8_1591097732184"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "\"<?$webhook_result_1.passages[0].passage_text?>\""
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_5_1591097647383",
+      "conditions": "$webhook_result_1",
+      "dialog_node": "response_8_1591097732184",
+      "previous_sibling": "node_8_1591168370998"
+    },
+    {
+      "type": "standard",
+      "title": "Types of Holograms",
+      "parent": "node_5_1591097647383",
+      "actions": [
+        {
+          "name": "main_webhook",
+          "type": "webhook",
+          "parameters": {
+            "input": "<?input.text?>"
+          },
+          "result_variable": "webhook_result_2"
+        }
+      ],
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#Types_of_holograms",
+      "dialog_node": "node_10_1591164989340"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Try some time later "
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_8_1591168370998",
+      "conditions": "anything_else",
+      "dialog_node": "response_5_1591168578813",
+      "previous_sibling": "response_5_1591168577610"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "\"<?$webhook_result_3.passages[0].passage_text?>\""
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1591168370998",
+      "conditions": "$webhook_result_3",
+      "dialog_node": "response_5_1591168577610"
+    },
+    {
+      "type": "standard",
+      "title": "Ask about the holographic field",
+      "actions": [
+        {
+          "name": "main_webhook",
+          "type": "webhook",
+          "parameters": {
+            "input": "<?input.text?>"
+          },
+          "result_variable": "webhook_result_1"
+        }
+      ],
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#Field_Information",
+      "dialog_node": "node_5_1591097647383",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_3_1590493065117",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Greetings",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hi ...How can i help you?"
+              },
+              {
+                "text": "hello how r u?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "@Hi",
+      "dialog_node": "node_3_1590493065117",
+      "previous_sibling": "node_5_1591097647383"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "Intelligent smart desk chatbot",
+  "language": "en",
+  "description": ""
+}
