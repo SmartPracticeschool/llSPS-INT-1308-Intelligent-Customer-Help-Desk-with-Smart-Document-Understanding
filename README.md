@@ -15,4 +15,4 @@ Create a customer care dialog skill in Watson Assistant Use Smart Document Under
 
 Node-Red Dashboard link After deploying : https://node-red-yxmxu.eu-gb.mybluemix.net/ui
 
-
+Project demo video: https://youtu.be/9xzfe_5YaL8
